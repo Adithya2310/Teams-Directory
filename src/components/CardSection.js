@@ -4,16 +4,25 @@ import { useSelector,useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { displayAll } from '../redux/actions'
 
-const CardSection = () => {
+const CardSection = ({curPage,setCurPage}) => {
+
+  const myState=useSelector((state)=>state.filteredData);
+  const dispatch=useDispatch();
+
+  useEffect(()=>{
+    dispatch(displayAll())
+  },[dispatch]);
 
   // logic for pagination
-  const [curPage,setCurPage]=useState(1);
   const [perPage]=useState(16);
   const [offset,setOffset]=useState(0);
 
+  const Totalpages=Math.ceil(myState.length/perPage);
+   console.log(Totalpages);
+
   const pages=[];
 
-  for(let i=0;i<8;i++)
+  for(let i=0;i<6;i++)
   {
     if(i+offset+1<64)
       pages[i]=i+offset+1;
@@ -30,19 +39,9 @@ const CardSection = () => {
     setOffset(offset-1);
   }
 
-  const myState=useSelector((state)=>state.filteredData);
-
-
-  const dispatch=useDispatch();
-
-  useEffect(()=>{
-    dispatch(displayAll())
-  },[dispatch]);
-
-
   return (
     <div className=' col-span-4'>
-      <div className='grid grid-cols-4 gird-rows-5 text-center gap-2'>
+      <div className='grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gird-rows-5 text-center gap-2'>
         {
           myState.slice(curPage*perPage-perPage,curPage*perPage).map((data)=>{
             return <Card
@@ -67,13 +66,10 @@ const CardSection = () => {
               return  <button key={index} onClick={()=>setCurPage(page)} className={page===curPage?"px-3 py-1 bg-blue-300 text-white hover:bg-blue-400 focus:outline-none":"px-3 py-1 bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700 focus:outline-none"}>{page}</button>
             })
           }
-          {offset<56 && <><span className="px-3 py-1">...</span><button onClick={()=>setCurPage(63)} className="px-3 py-1 bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700 focus:outline-none">63</button></>
+          {curPage<=Totalpages-6 && <><span className="px-3 py-1">...</span><button onClick={()=>{setCurPage(Totalpages); setOffset(Totalpages-6);}} className="px-3 py-1 bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700 focus:outline-none">{Totalpages}</button></>}
 
 
-          }
-
-
-          {curPage!==63&&<button onClick={onNext} className="px-3 py-1 rounded-r-lg bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700 focus:outline-none">Next &gt;</button>}
+          {curPage!==Totalpages&&<button onClick={onNext} className="px-3 py-1 rounded-r-lg bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-700 focus:outline-none">Next &gt;</button>}
         </nav>
       </div>
 

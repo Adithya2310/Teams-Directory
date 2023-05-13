@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { curCategory } from '../redux/actions';
 
 
-const FilterSection = () => {
+const FilterSection = ({setCurPage}) => {
 
   const {data}=useSelector((state)=>state)
   const dispatch=useDispatch();
@@ -22,12 +22,14 @@ const FilterSection = () => {
 
   // to change the filter value
   const changeCategory=(event)=>{
+    setCurPage(1);
     const {name,value}=event.target;
     dispatch(curCategory(value,name));
   }
 
   // to handle availiable filter
   const changeAvailable=(event)=>{
+    setCurPage(1);
     const name="available";
     const value=event.target.checked?"Yes":"";
     dispatch(curCategory(value,name))
@@ -48,15 +50,14 @@ const FilterSection = () => {
         </div>
         <h3 className='my-3 mt-10 mx-1 text-gray-800 font-medium text-xl'>Gender</h3>
         <form className='relative' action="#">
-            <select name="gender" onClick={changeCategory} className='px-1 mx-1 my-2 block appearance-none w-1/2 border-gray-400 hover:border-gray-500 '>
+            <select name="gender" onClick={changeCategory} className='px-1 mx-1 my-2 rounded block appearance-none w-1/2 border-gray-400 hover:border-gray-500 '>
             {
               gender.map((gender,index)=>{
               return <option key={index} name="gender" value={gender}>{gender}</option>
             })
             }
-
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-48 px-2 text-gray-700">
+            <div className="pointer-events-none absolute inset-y-0 sm:opacity-0 lg:opacity-100 md:opacity-100 md:right-20 lg:right-48 px-2 text-gray-700">
             <svg class="fill-current pb-2 h-8 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path d="M6 8l4 4 4-4"></path>
             </svg>            
@@ -66,7 +67,6 @@ const FilterSection = () => {
         <form action="">
           <input type="checkbox" onChange={changeAvailable} className='mx-1 mt-1 form-checkbox '/>
           <label className='ml-1' htmlFor="checkbox">Availaible</label>
-
         </form>
     </div>
   )
