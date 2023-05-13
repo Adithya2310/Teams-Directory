@@ -5,9 +5,15 @@ const displayAll=()=>{
 }
 
 const curCategory=(value,property)=>{
-    console.log("value",value,property)
     return {type:"CUR_CATEGORY",payload:{value:value,property:property}}
 }
 
+const addToTeam=(id)=>{
+    return {type:"ADD_TO_TEAM",payload:id}
+}
 
-export {displayAll,curCategory};
+const removeFromTeam=(id)=>{
+    return {type:"REMOVE_FROM_TEAM",payload:id}
+}
+
+export {displayAll,curCategory,addToTeam,removeFromTeam};

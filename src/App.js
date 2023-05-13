@@ -1,4 +1,4 @@
-import Cart from "./Cart";
+import Team from "./Team";
 import Home from "./Home";
 import NavBar from "./components/NavBar";
 import { Route,Routes,BrowserRouter } from "react-router-dom";
@@ -10,7 +10,7 @@ export default function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/team" element={<Team/>}/>
         </Routes>
     </div>
     </BrowserRouter>

@@ -8,12 +8,15 @@ const initialState={
         domain:"All",
         gender:"All",
         available:"All"
-    }
+    },
+    teamData: []
+
 };
 
 const reducer=(state=initialState,action)=>{
     switch(action.type){
         case "DISPLAY_ALL": return {...state,filteredData:action.payload};
+
         case "CUR_CATEGORY": 
         const {value,property}=action.payload;
         let filteredData=state.data;
@@ -61,7 +64,31 @@ const reducer=(state=initialState,action)=>{
                 filters:{
                     ...state.filters,
                     [property]:value
-                }}
+        }}
+
+        case "ADD_TO_TEAM":
+            const toTeam=state.data.filter((curElem)=>curElem.id===action.payload)
+            let teamData=state.teamData;
+            const existingPerson=state.teamData.find((curElem)=>curElem[0].id===action.payload);
+            if(existingPerson)
+            {
+                return state;
+            }
+            teamData.push(toTeam);
+
+            return {
+                ...state,teamData:teamData
+            };
+
+        case "REMOVE_FROM_TEAM":
+            const newTeam=state.teamData.filter((curElem)=>{
+                return curElem[0].id!==action.payload
+            });
+            console.log("updated team",newTeam);
+            return {
+                ...state,
+                teamData:newTeam
+            }
         default: return state;
     }
 }

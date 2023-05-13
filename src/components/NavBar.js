@@ -9,7 +9,7 @@ const NavBar = () => {
           <img className='' height="150" width="250" src="/logo.png" alt="" />
         </NavLink>
             <p className='my-10 text-purple-600 text-xl opacity-0 lg:opacity-100 lg:ml-96 font-mono'>For Heliverse</p>
-            <NavLink to="/cart">
+            <NavLink to="/team">
               <button className=' bg-gradient-to-r from-purple-400 to-purple-500 bg-purple-500 rounded my-7 px-4 h-12'>Team</button>
             </NavLink>
         </div>
