@@ -40,7 +40,7 @@ const CardSection = ({curPage,setCurPage}) => {
   }
 
   return (
-    <div className=' col-span-4'>
+    <div className='col-span-4'>
       <div className='grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gird-rows-5 text-center gap-2'>
         {
           myState.slice(curPage*perPage-perPage,curPage*perPage).map((data)=>{

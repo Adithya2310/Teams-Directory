@@ -36,7 +36,7 @@ const FilterSection = ({setCurPage}) => {
   }
 
   return (
-    <div className='py-4 px-3 mx-2 rounded col-span-2 bg-blue-300'>
+    <div className='py-4 md:mx-2 lg:px-3 md:px-3 sm:px-1 lg:mx-2 rounded col-span-2 bg-blue-300'>
         <form action="" onSubmit={(e)=>e.preventDefault()}>
             <input type="text" name="search" value={data.filter.search} onChange={changeCategory} className='mx-2 my-3 w-1/2 rounded border-2' placeholder='Search'/>
         </form>

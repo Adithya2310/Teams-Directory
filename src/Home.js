@@ -6,7 +6,7 @@ const Home = () => {
   const [curPage,setCurPage]=useState(1);
 
   return (
-    <div className='grid grid-cols-6 gap-5'>
+    <div className='grid grid-cols-6 lgap-5'>
         <FilterSection curPage={curPage} setCurPage={setCurPage}/>
         <CardSection curPage={curPage} setCurPage={setCurPage}/>
     </div>
