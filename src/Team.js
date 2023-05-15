@@ -16,7 +16,7 @@ const Cart = () => {
     <section className=' bg-blue-300 rounded mr-10 py-10 px-10'>
     <h2 className='cursor-pointer text-slate-800  px-4 mt-4 text-3xl font-medium'>
     <NavLink className="hover:text-purple-500 hover:underline" to="/">Home</NavLink> / Team</h2>
-    <div className='my-12 container grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-6 grid-rows-4 gap-6 text-center'>
+    <div className='my-12 container grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-5 grid-rows-4 gap-6 text-center'>
     {
       teamData.map((data)=>{
         return <Card
